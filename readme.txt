@@ -1,7 +1,7 @@
 === WP Term Icons ===
 Contributors: johnjamesjacoby
 Tags: taxonomy, term, meta, metadata, icon, icons
-Requires at least: 4.2
+Requires at least: 4.3
 Tested up to: 4.3
 Stable tag: 0.1.0
 License: GPLv2 or later
