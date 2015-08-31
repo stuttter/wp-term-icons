@@ -5,7 +5,7 @@
  * Plugin URI:  https://wordpress.org/plugins/wp-term-icons/
  * Description: Pretty icons for categories, tags, and other taxonomy terms
  * Author:      John James Jacoby
- * Version:     0.1.0
+ * Version:     0.1.1
  * Author URI:  https://profiles.wordpress.org/johnjamesjacoby/
  * License:     GPL v2 or later
  */
@@ -26,12 +26,12 @@ final class WP_Term_Icons {
 	/**
 	 * @var string Plugin version
 	 */
-	public $version = '0.1.0';
+	public $version = '0.1.1';
 
 	/**
 	 * @var string Database version
 	 */
-	public $db_version = 201508240001;
+	public $db_version = 201508310001;
 
 	/**
 	 * @var string Database version
@@ -328,7 +328,7 @@ final class WP_Term_Icons {
 	public static function term_icon_add_form_field() {
 		?>
 
-		<div class="form-field form-required">
+		<div class="form-field">
 			<label for="term-icon">
 				<?php esc_html_e( 'Icon', 'wp-term-icons' ); ?>
 			</label>
