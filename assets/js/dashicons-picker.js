@@ -4,6 +4,7 @@
  * Based on: https://github.com/bradvin/dashicons-picker/
  */
 
+/* global wpDashiconPickerL10n */
 ( function ( $ ) {
 
 	/**
@@ -262,9 +263,9 @@
 
 			var button = $( this );
 
-			button.on( 'click.dashiconsPicker', function () {
-				createPopup( button );
-			} );
+			createPopup( button );
+
+			removePopup();
 
 			function createPopup( button ) {
 
@@ -328,6 +329,10 @@
 					}
 				} );
 
+				button.click( '.dashiconsPicker', function() {
+					$( '.dashicon-picker-container' ).show();
+				} );
+
 				$( document ).mouseup( function ( e ) {
 					if ( ! popup.is( e.target ) && popup.has( e.target ).length === 0 ) {
 						removePopup();
@@ -336,7 +341,7 @@
 			}
 
 			function removePopup() {
-				$( '.dashicon-picker-container' ).remove();
+				$( '.dashicon-picker-container' ).hide();
 			}
 		} );
 	};

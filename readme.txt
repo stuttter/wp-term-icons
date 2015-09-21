@@ -20,6 +20,7 @@ This plugin requires [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ 
 = Also checkout =
 
 * [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ "Sort taxonomy terms, your way.")
+* [WP Term Author](https://wordpress.org/plugins/wp-term-author/ "Authors for categories, tags, and other taxonomy terms.")
 * [WP Term Order](https://wordpress.org/plugins/wp-term-order/ "Sort taxonomy terms, your way.")
 * [WP Term Colors](https://wordpress.org/plugins/wp-term-colors/ "Pretty colors for categories, tags, and other taxonomy terms.")
 * [WP Term Visibility](https://wordpress.org/plugins/wp-term-visibility/ "Visibilities for categories, tags, and other taxonomy terms.")
