@@ -73,11 +73,11 @@ $terms = get_terms( 'category', array(
 
 = Where can I get support? =
 
-The WordPress support forums: https://wordpress.org/tags/wp-term-icons/
+The WordPress support forums: https://wordpress.org/support/plugin/wp-term-icons/
 
 = Where can I find documentation? =
 
-http://github.com/johnjamesjacoby/wp-term-icons/
+http://github.com/stuttter/wp-term-icons/
 
 == Changelog ==
 
