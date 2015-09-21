@@ -45,7 +45,7 @@ $terms = get_terms( 'category', array(
 
 ### Where can I get support?
 
-The WordPress support forums: https://wordpress.org/tags/wp-term-icons/
+The WordPress support forums: https://wordpress.org/support/plugin/wp-term-icons/
 
 ### Can I contribute?
 
