@@ -3,7 +3,7 @@ Contributors: johnjamesjacoby
 Tags: taxonomy, term, meta, metadata, icon, icons
 Requires at least: 4.3
 Tested up to: 4.3
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,7 @@ This plugin requires [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ 
 * [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ "Sort taxonomy terms, your way.")
 * [WP Term Order](https://wordpress.org/plugins/wp-term-order/ "Sort taxonomy terms, your way.")
 * [WP Term Colors](https://wordpress.org/plugins/wp-term-colors/ "Pretty colors for categories, tags, and other taxonomy terms.")
+* [WP Term Visibility](https://wordpress.org/plugins/wp-term-visibility/ "Visibilities for categories, tags, and other taxonomy terms.")
 * [WP User Groups](https://wordpress.org/plugins/wp-user-groups/ "Group users together with taxonomies & terms.")
 * [WP Event Calendar](https://wordpress.org/plugins/wp-event-calendar/ "Flexible events, with a calendar view.")
 
@@ -78,6 +79,9 @@ The WordPress support forums: https://wordpress.org/tags/wp-term-icons/
 http://github.com/johnjamesjacoby/wp-term-icons/
 
 == Changelog ==
+
+= 0.1.2 =
+* Add "term-icon-wrap" class to fields
 
 = 0.1.1 =
 * Remove erroneous "form-required" class from field
