@@ -187,7 +187,7 @@ class WP_Term_Meta_UI {
 	 * @param array $args
 	 * @return array
 	 */
-	private static function get_taxonomies( $args = array() ) {
+	private function get_taxonomies( $args = array() ) {
 
 		// Filter default arguments
 		$defaults = apply_filters( "wp_term_{$this->meta_key}_get_taxonomies", array(
