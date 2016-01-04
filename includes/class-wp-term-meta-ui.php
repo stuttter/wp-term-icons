@@ -8,9 +8,10 @@
  * core actions & filters to add columns to list tables, add fields to forms,
  * and handle the sanitization & saving of values.
  *
- * @since 0.1.3
+ * @since 0.1.1
+ * @version 0.1.4
  *
- * @package TermMeta/UI
+ * @package Plugins/Terms/Metadata/UI
  */
 
 // Exit if accessed directly
@@ -34,7 +35,7 @@ class WP_Term_Meta_UI {
 	/**
 	 * @var string Database version
 	 */
-	protected $db_version = 201501010001;
+	protected $db_version = 201601010001;
 
 	/**
 	 * @var string Database version
@@ -81,9 +82,19 @@ class WP_Term_Meta_UI {
 	public $basename = '';
 
 	/**
-	 * @var boo Whether to use fancy UI
+	 * @var bool Whether to use fancy UI
 	 */
 	public $fancy = false;
+
+	/**
+	 * @var bool Whether to show a column
+	 */
+	public $has_column = true;
+
+	/**
+	 * @var bool Whether to show fields
+	 */
+	public $has_fields = true;
 
 	/**
 	 * Hook into queries, admin screens, and more!
@@ -109,18 +120,22 @@ class WP_Term_Meta_UI {
 		// Always hook these in, for ajax actions
 		foreach ( $taxonomies as $value ) {
 
-			// Unfancy gets the column
-			add_filter( "manage_edit-{$value}_columns",          array( $this, 'add_column_header' ) );
-			add_filter( "manage_{$value}_custom_column",         array( $this, 'add_column_value'  ), 10, 3 );
-			add_filter( "manage_edit-{$value}_sortable_columns", array( $this, 'sortable_columns'  ) );
+			// Has column?
+			if ( true === $this->has_column ) {
+				add_filter( "manage_edit-{$value}_columns",          array( $this, 'add_column_header' ) );
+				add_filter( "manage_{$value}_custom_column",         array( $this, 'add_column_value'  ), 10, 3 );
+				add_filter( "manage_edit-{$value}_sortable_columns", array( $this, 'sortable_columns'  ) );
+			}
 
-			add_action( "{$value}_add_form_fields",  array( $this, 'add_form_field'  ) );
-			add_action( "{$value}_edit_form_fields", array( $this, 'edit_form_field' ) );
+			// Has fields?
+			if ( true === $this->has_fields ) {
+				add_action( "{$value}_add_form_fields",  array( $this, 'add_form_field'  ) );
+				add_action( "{$value}_edit_form_fields", array( $this, 'edit_form_field' ) );
+			}
 		}
 
 		// ajax actions
-		$ajax_key = "ajax_{$this->meta_key}_terms";
-		add_action( "wp_{$ajax_key}", array( $this, 'ajax_update' ) );
+		add_action( "wp_ajax_{$this->meta_key}_terms", array( $this, 'ajax_update' ) );
 
 		// Only blog admin screens
 		if ( is_blog_admin() || doing_action( 'wp_ajax_inline_save_tax' ) ) {
@@ -173,6 +188,13 @@ class WP_Term_Meta_UI {
 	public function help_tabs() { }
 
 	/**
+	 * Add help tabs for this metadata
+	 *
+	 * @since 0.1.2
+	 */
+	public function admin_head() { }
+
+	/**
 	 * Quick edit ajax updating
 	 *
 	 * @since 0.1.1
@@ -189,8 +211,15 @@ class WP_Term_Meta_UI {
 	 */
 	private function get_taxonomies( $args = array() ) {
 
-		// Filter default arguments
-		$defaults = apply_filters( "wp_term_{$this->meta_key}_get_taxonomies", array(
+		// The filter key/tag
+		$tag = "wp_term_{$this->meta_key}_get_taxonomies";
+
+		/**
+		 * Allow filtering of affected taxonomies
+		 *
+		 * @since 0.1.3
+		 */
+		$defaults = apply_filters( $tag, array(
 			'show_ui' => true
 		) );
 
@@ -480,4 +509,3 @@ class WP_Term_Meta_UI {
 	}
 }
 endif;
-
