@@ -253,7 +253,7 @@ class WP_Term_Meta_UI {
 	}
 
 	/**
-	 * Filter get_terms() and maybe order by meta data
+	 * Filter get_terms() and maybe add `meta_query`
 	 *
 	 * @since 0.1.5
 	 *
