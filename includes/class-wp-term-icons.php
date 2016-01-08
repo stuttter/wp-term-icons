@@ -22,12 +22,12 @@ final class WP_Term_Icons extends WP_Term_Meta_UI {
 	/**
 	 * @var string Plugin version
 	 */
-	public $version = '0.1.2';
+	public $version = '0.2.0';
 
 	/**
 	 * @var string Database version
 	 */
-	public $db_version = 201509010001;
+	public $db_version = 201601070001;
 
 	/**
 	 * @var string Database version
