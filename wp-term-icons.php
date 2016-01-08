@@ -3,11 +3,14 @@
 /**
  * Plugin Name: WP Term Icons
  * Plugin URI:  https://wordpress.org/plugins/wp-term-icons/
- * Description: Pretty icons for categories, tags, and other taxonomy terms
  * Author:      John James Jacoby
- * Version:     0.2.0
  * Author URI:  https://profiles.wordpress.org/johnjamesjacoby/
- * License:     GPL v2 or later
+ * License:     GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Description: Pretty icons for categories, tags, and other taxonomy terms
+ * Version:     0.2.0
+ * Text Domain: wp-term-icons
+ * Domain Path: /assets/lang/
  */
 
 // Exit if accessed directly
@@ -23,7 +26,7 @@ function _wp_term_icons() {
 	// Setup the main file
 	$plugin_path = plugin_dir_path( __FILE__ );
 
-	// Include the main class
+	// Classes
 	require_once $plugin_path . '/includes/class-wp-term-meta-ui.php';
 	require_once $plugin_path . '/includes/class-wp-term-icons.php';
 }
