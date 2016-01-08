@@ -1,3 +1,18 @@
+.column-icon {
+	width: 74px;
+}
+
+.term-icon {
+	font: normal 25px/25px 'dashicons';
+	vertical-align: top;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: 25px;
+	height: 25px;
+	margin-top: 2px;
+}
+
 .wp-dashicon-picker {
 	width: 80px;
 }

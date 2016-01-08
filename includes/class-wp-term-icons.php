@@ -103,33 +103,6 @@ final class WP_Term_Icons extends WP_Term_Meta_UI {
 	}
 
 	/**
-	 * Align custom `color` column
-	 *
-	 * @since 0.1.0
-	 */
-	public function admin_head() {
-		?>
-
-		<style type="text/css">
-			.column-icon {
-				width: 74px;
-			}
-			.term-icon {
-				font: normal 25px/25px 'dashicons';
-				vertical-align: top;
-				speak: none;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-				width: 25px;
-				height: 25px;
-				margin-top: 2px;
-			}
-		</style>
-
-		<?php
-	}
-
-	/**
 	 * Return the formatted output for the colomn row
 	 *
 	 * @since 0.1.2
