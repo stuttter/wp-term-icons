@@ -9,7 +9,7 @@
  * and handle the sanitization & saving of values.
  *
  * @since 0.1.1
- * @version 0.1.6
+ * @version 0.1.7
  *
  * @package Plugins/Terms/Metadata/UI
  */
@@ -112,9 +112,13 @@ class WP_Term_Meta_UI {
 		$this->file       = $file;
 		$this->url        = plugin_dir_url( $this->file );
 		$this->path       = plugin_dir_path( $this->file );
-		$this->basename   = plugin_basename( $this->file );
-		$this->taxonomies = $this->get_taxonomies();
+		$this->basename   = plugin_basename( $this->file );		
 		$this->fancy      = apply_filters( "wp_fancy_term_{$this->meta_key}", true );
+
+		// Only look for taxonomies if not already set
+		if ( empty( $this->taxonomies ) ) {
+			$this->taxonomies = $this->get_taxonomies();
+		}
 
 		// Maybe build db version key
 		if ( empty( $this->db_version_key ) ) {
