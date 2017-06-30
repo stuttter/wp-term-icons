@@ -35,7 +35,6 @@
 			self.close = $.proxy( self.close, self );
 
 			self.initialValue = el.val();
-			console.log(el);
 
 			// Set up HTML structure, hide things
 			el.addClass( 'wp-dashicon-picker' ).hide().wrap( _wrap );
