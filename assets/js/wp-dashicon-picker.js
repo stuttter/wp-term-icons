@@ -35,11 +35,12 @@
 			self.close = $.proxy( self.close, self );
 
 			self.initialValue = el.val();
+			console.log(el);
 
 			// Set up HTML structure, hide things
 			el.addClass( 'wp-dashicon-picker' ).hide().wrap( _wrap );
 			self.wrap            = el.parent();
-			self.toggler         = $( _before ).insertBefore( el ).css( { backgroundImage: self.initialValue } ).attr( 'title', wpDashiconPickerL10n.pick ).attr( 'data-current', wpDashiconPickerL10n.current );
+			self.toggler         = $( _before ).insertBefore( el ).css( { backgroundImage: self.initialValue } ).attr( 'title', wpDashiconPickerL10n.pick ).attr( 'data-current', wpDashiconPickerL10n.current ).addClass( el.val() );
 			self.pickerContainer = $( _after ).insertAfter( el );
 			self.button          = $( _button );
 
@@ -112,7 +113,7 @@
 				var me = $( this );
 				if ( me.hasClass( 'wp-picker-clear' ) ) {
 					self.element.val( '' );
-					self.toggler.css( 'backgroundImage', '' );
+					self.toggler.css( 'backgroundImage', '' ).attr( 'class', 'wp-dashicon-result' );
 					if ( $.isFunction( self.options.clear ) ) {
 						self.options.clear.call( this, event );
 					}
