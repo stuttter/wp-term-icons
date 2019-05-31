@@ -1,23 +1,19 @@
 === WP Term Icons ===
-Contributors: johnjamesjacoby
-Tags: taxonomy, term, meta, metadata, icon, icons
+Contributors:      johnjamesjacoby, stuttter
+Tags:              taxonomy, term, meta, metadata, icon, icons
+Requires PHP:      5.6.20
 Requires at least: 4.4
-Tested up to: 4.4
-Stable tag: 0.2.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to:      5.2
+Stable tag:        2.0.0
+License:           GPLv2 or later
+License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+Donate link:       https://ko-fi.com/jjj
 
 == Description ==
 
 Pretty icons for categories, tags, and other taxonomy terms
 
 WP Term Icons allows users to assign icons to any visible category, tag, or taxonomy term using a fancy icon picker, providing a customized look for their taxonomy terms.
-
-= Dependencies =
-
-Not since WordPress 4.4.
-
-Install the [WP Term Meta](https://wordpress.org/plugins/wp-term-meta/ "Metadata, for taxonomy terms.") plugin if you're on an earlier version.
 
 = Also checkout =
 
@@ -88,6 +84,9 @@ The WordPress support forums: https://wordpress.org/support/plugin/wp-term-icons
 http://github.com/stuttter/wp-term-icons/
 
 == Changelog ==
+
+= 2.0.0 =
+* Update base class
 
 = 0.2.0 =
 * Update base class

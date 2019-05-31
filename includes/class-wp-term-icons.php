@@ -17,17 +17,17 @@ if ( ! class_exists( 'WP_Term_Icons' ) ) :
  *
  * @since 0.1.0
  */
-final class WP_Term_Icons extends WP_Term_Meta_UI {
+final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 
 	/**
 	 * @var string Plugin version
 	 */
-	public $version = '0.2.0';
+	public $version = '2.0.0';
 
 	/**
 	 * @var string Database version
 	 */
-	public $db_version = 201601070001;
+	public $db_version = 201905300001;
 
 	/**
 	 * @var string Metadata key
@@ -50,17 +50,6 @@ final class WP_Term_Icons extends WP_Term_Meta_UI {
 
 		// Call the parent and pass the file
 		parent::__construct( $file );
-	}
-
-	/**
-	 * Administration area hooks
-	 *
-	 * @since 0.1.0
-	 */
-	public function admin_init() {
-
-		// Check for DB update
-		$this->maybe_upgrade_database();
 	}
 
 	/**
@@ -103,7 +92,7 @@ final class WP_Term_Icons extends WP_Term_Meta_UI {
 	}
 
 	/**
-	 * Return the formatted output for the colomn row
+	 * Return the formatted output for the column row
 	 *
 	 * @since 0.1.2
 	 *
