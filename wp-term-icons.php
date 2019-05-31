@@ -8,7 +8,7 @@
  * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Description: Pretty icons for categories, tags, and other taxonomy terms
- * Version:     0.2.0
+ * Version:     2.0.0
  * Text Domain: wp-term-icons
  * Domain Path: /assets/lang/
  */
