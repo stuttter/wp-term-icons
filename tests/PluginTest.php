@@ -67,10 +67,19 @@ final class PluginTest extends TestCase {
 	public function test_column_output_is_allowlist_escaped(): void {
 		$icons = $this->icons();
 		$GLOBALS['wpti_test']['returns']['get_term_meta'] = 'dashicons-admin-site" onclick="bad';
+		$had_taxonomy = array_key_exists( 'taxonomy', $_REQUEST );
+		$taxonomy     = $had_taxonomy ? $_REQUEST['taxonomy'] : null;
 		$_REQUEST['taxonomy'] = 'category';
 
-		$output = $icons->add_column_value( '', 'icon', 42 );
-		unset( $_REQUEST['taxonomy'] );
+		try {
+			$output = $icons->add_column_value( '', 'icon', 42 );
+		} finally {
+			if ( $had_taxonomy ) {
+				$_REQUEST['taxonomy'] = $taxonomy;
+			} else {
+				unset( $_REQUEST['taxonomy'] );
+			}
+		}
 
 		$expected = '<i data-icon="dashicons-admin-site&quot; onclick=&quot;bad" class="term-icon dashicons dashicons-admin-site&quot; onclick=&quot;bad"></i>';
 		$this->assertSame( $expected, $output );
