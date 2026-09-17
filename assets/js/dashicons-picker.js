@@ -269,8 +269,7 @@
 
 			function createPopup( button ) {
 
-				var target = $( button.data( 'target' ) ),
-					popup  = $( '<div class="dashicon-picker-container"> \
+				var popup = $( '<div class="dashicon-picker-container"> \
 						<div class="dashicon-picker-control" /> \
 						<ul class="dashicon-picker-list" /> \
 					</div>' )
@@ -287,7 +286,7 @@
 				$( 'a', list ).click( function ( e ) {
 					e.preventDefault();
 					var title = $( this ).attr( 'title' );
-					target.val( 'dashicons-' + title );
+					button.val( title === '' ? '' : 'dashicons-' + title ).trigger( 'change' );
 					removePopup();
 				} );
 

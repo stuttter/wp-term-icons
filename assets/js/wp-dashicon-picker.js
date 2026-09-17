@@ -39,9 +39,10 @@
 			// Set up HTML structure, hide things
 			el.addClass( 'wp-dashicon-picker' ).hide().wrap( _wrap );
 			self.wrap            = el.parent();
-			self.toggler         = $( _before ).insertBefore( el ).css( { backgroundImage: self.initialValue } ).attr( 'title', wpDashiconPickerL10n.pick ).attr( 'data-current', wpDashiconPickerL10n.current );
+			self.toggler         = $( _before ).insertBefore( el ).attr( 'title', wpDashiconPickerL10n.pick ).attr( 'data-current', wpDashiconPickerL10n.current );
 			self.pickerContainer = $( _after ).insertAfter( el );
 			self.button          = $( _button );
+			self._setTogglerIcon( self.initialValue );
 
 			if ( self.options.defaultDashicon ) {
 				self.button.addClass( 'wp-picker-default' ).val( wpDashiconPickerL10n.defaultString );
@@ -90,9 +91,11 @@
 			self.element.change( function( event ) {
 				var me = $( this ),
 					val = me.val();
+
+				self._setTogglerIcon( val );
+
 				// Empty = clear
 				if ( val === '' || val === '#' ) {
-					self.toggler.css( 'backgroundImage', '' );
 					// fire clear callback if we have one
 					if ( $.isFunction( self.options.clear ) ) {
 						self.options.clear.call( this, event );
@@ -108,18 +111,23 @@
 				}
 			});
 
-			self.button.click( function( event ) {
+			self.button.click( function() {
 				var me = $( this );
 				if ( me.hasClass( 'wp-picker-clear' ) ) {
-					self.element.val( '' );
-					self.toggler.css( 'backgroundImage', '' );
-					if ( $.isFunction( self.options.clear ) ) {
-						self.options.clear.call( this, event );
-					}
+					self.element.val( '' ).change();
 				} else if ( me.hasClass( 'wp-picker-default' ) ) {
 					self.element.val( self.options.defaultDashicon ).change();
 				}
 			});
+		},
+		_setTogglerIcon: function( value ) {
+			this.toggler.removeClass( function( index, className ) {
+				return ( className.match( /(^|\s)dashicons-\S+/g ) || [] ).join( ' ' );
+			} );
+
+			if ( /^dashicons-[a-z0-9-]+$/.test( value ) ) {
+				this.toggler.addClass( value );
+			}
 		},
 		open: function() {
 			this.element.show().focus();
