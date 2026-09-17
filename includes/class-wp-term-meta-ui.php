@@ -446,7 +446,7 @@ class UI {
 			$retval = $this->format_output( $meta );
 		}
 
-		echo $retval;
+		echo wp_kses_post( $retval );
 	}
 
 	/**

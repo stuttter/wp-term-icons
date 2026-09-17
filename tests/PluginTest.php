@@ -64,6 +64,21 @@ final class PluginTest extends TestCase {
 		$this->assertSame( 'icon', $icons->sortable_columns( array() )['icon'] );
 	}
 
+	public function test_column_output_is_allowlist_escaped(): void {
+		$icons = $this->icons();
+		$GLOBALS['wpti_test']['returns']['get_term_meta'] = 'dashicons-admin-site" onclick="bad';
+		$_REQUEST['taxonomy'] = 'category';
+
+		ob_start();
+		$icons->add_column_value( '', 'icon', 42 );
+		$output = ob_get_clean();
+		unset( $_REQUEST['taxonomy'] );
+
+		$expected = '<i data-icon="dashicons-admin-site&quot; onclick=&quot;bad" class="term-icon dashicons dashicons-admin-site&quot; onclick=&quot;bad"></i>';
+		$this->assertSame( $expected, $output );
+		$this->assertSame( array( array( $expected ) ), $GLOBALS['wpti_test']['calls']['wp_kses_post'] );
+	}
+
 	public function test_set_meta_updates_and_deletes_the_icon_value(): void {
 		$icons = $this->icons();
 		$icons->set_meta( 42, 'category', 'dashicons-admin-site', true );
