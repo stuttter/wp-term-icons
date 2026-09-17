@@ -69,9 +69,7 @@ final class PluginTest extends TestCase {
 		$GLOBALS['wpti_test']['returns']['get_term_meta'] = 'dashicons-admin-site" onclick="bad';
 		$_REQUEST['taxonomy'] = 'category';
 
-		ob_start();
-		$icons->add_column_value( '', 'icon', 42 );
-		$output = ob_get_clean();
+		$output = $icons->add_column_value( '', 'icon', 42 );
 		unset( $_REQUEST['taxonomy'] );
 
 		$expected = '<i data-icon="dashicons-admin-site&quot; onclick=&quot;bad" class="term-icon dashicons dashicons-admin-site&quot; onclick=&quot;bad"></i>';
