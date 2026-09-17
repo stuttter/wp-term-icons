@@ -57,7 +57,7 @@ final class PluginTest extends TestCase {
 		$this->assertStringContainsString( 'self._setTogglerIcon( self.initialValue );', $picker );
 		$this->assertStringContainsString( 'self._setTogglerIcon( val );', $picker );
 		$this->assertStringContainsString( "self.element.val( '' ).change();", $picker );
-		$this->assertStringContainsString( "button.val( 'dashicons-' + title ).trigger( 'change' );", $catalog );
+		$this->assertStringContainsString( "button.val( title === '' ? '' : 'dashicons-' + title ).trigger( 'change' );", $catalog );
 		$this->assertStringContainsString( '.wp-dashicon-result:not([class*="dashicons-"]):before', $styles );
 		$this->assertStringNotContainsString( "content: '\\f099';", $styles );
 	}

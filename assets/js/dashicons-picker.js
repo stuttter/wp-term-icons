@@ -286,7 +286,7 @@
 				$( 'a', list ).click( function ( e ) {
 					e.preventDefault();
 					var title = $( this ).attr( 'title' );
-					button.val( 'dashicons-' + title ).trigger( 'change' );
+					button.val( title === '' ? '' : 'dashicons-' + title ).trigger( 'change' );
 					removePopup();
 				} );
 
