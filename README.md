@@ -4,13 +4,13 @@ Pretty icons for categories, tags, and other taxonomy terms
 
 WP Term Icons allows users to assign icons to any visible category, tag, or taxonomy term using a fancy icon picker, providing a customized look for their taxonomy terms.
 
-# Installation
+## Installation
 
 * Download and install using the built in WordPress plugin installer.
 * Activate in the "Plugins" area of your admin by clicking the "Activate" link.
 * No further setup or configuration is necessary.
 
-# FAQ
+## FAQ
 
 ### Does this plugin depend on any others?
 
@@ -47,8 +47,24 @@ $terms = get_terms( 'category', array(
 
 ### Where can I get support?
 
-The WordPress support forums: https://wordpress.org/support/plugin/wp-term-icons/
+Use the [WordPress.org support forum](https://wordpress.org/support/plugin/wp-term-icons/)
+for installation and usage questions. Use GitHub issues for reproducible defects
+and focused enhancements.
 
 ### Can I contribute?
 
 Yes, please! The number of users needing more robust taxonomy visuals is growing fast. Having an easy-to-use UI and powerful set of functions is critical to managing complex WordPress installations. If this is your thing, please help us out!
+
+## Development
+
+Install the locked development dependencies and run the regression suite:
+
+```sh
+composer install
+composer test
+```
+
+The plugin and its development tooling require PHP 7.4 or newer. Production
+Composer installs should omit development dependencies.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.

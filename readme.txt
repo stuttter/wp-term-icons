@@ -1,9 +1,9 @@
 === WP Term Icons ===
 Contributors:      johnjamesjacoby, stuttter
 Tags:              taxonomy, term, meta, metadata, icon, icons
-Requires PHP:      5.6.20
-Requires at least: 4.4
-Tested up to:      5.2
+Requires PHP:      7.4
+Requires at least: 6.4
+Tested up to:      7.1
 Stable tag:        2.0.0
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -60,7 +60,7 @@ No. All of WordPress's core database tables remain untouched.
 = How do I query for terms via their icons? =
 
 With WordPress's `get_terms()` function, the same as usual, but with an additional `meta_query` argument according the `WP_Meta_Query` specification:
-http://codex.wordpress.org/Class_Reference/WP_Meta_Query
+https://developer.wordpress.org/reference/classes/wp_meta_query/
 
 `
 $terms = get_terms( 'category', array(
@@ -83,7 +83,7 @@ The WordPress support forums: https://wordpress.org/support/plugin/wp-term-icons
 
 = Where can I find documentation? =
 
-http://github.com/stuttter/wp-term-icons/
+https://github.com/stuttter/wp-term-icons/
 
 == Changelog ==
 
