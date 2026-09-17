@@ -43,9 +43,9 @@ final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 
 		// Setup the labels
 		$this->labels = array(
-			'singular'    => esc_html__( 'Icon',  'wp-term-color' ),
-			'plural'      => esc_html__( 'Icons', 'wp-term-color' ),
-			'description' => esc_html__( 'Assign terms a custom icon to visually separate them from each-other.', 'wp-term-color' )
+			'singular'    => esc_html__( 'Icon',  'wp-term-icons' ),
+			'plural'      => esc_html__( 'Icons', 'wp-term-icons' ),
+			'description' => esc_html__( 'Assign terms a custom icon to visually separate them from each-other.', 'wp-term-icons' )
 		);
 
 		// Call the parent and pass the file
