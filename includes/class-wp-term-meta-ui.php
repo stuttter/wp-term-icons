@@ -428,7 +428,7 @@ class UI {
 	 * @param string $custom_column
 	 * @param int    $term_id
 	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function add_column_value( $empty = '', $custom_column = '', $term_id = 0 ) {
 
@@ -446,7 +446,7 @@ class UI {
 			$retval = $this->format_output( $meta );
 		}
 
-		echo $retval;
+		return wp_kses_post( $retval );
 	}
 
 	/**

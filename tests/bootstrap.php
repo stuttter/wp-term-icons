@@ -26,6 +26,10 @@ function plugin_dir_url() { return 'https://example.test/wp-content/plugins/wp-t
 function plugin_basename() { return 'wp-term-icons/wp-term-icons.php'; }
 function esc_html__( $text ) { return $text; }
 function esc_attr( $value ) { return htmlspecialchars( (string) $value, ENT_QUOTES, 'UTF-8' ); }
+function wp_kses_post( $value ) {
+	wpti_test_call( __FUNCTION__, func_get_args() );
+	return $value;
+}
 function wp_enqueue_script() { return wpti_test_call( __FUNCTION__, func_get_args() ); }
 function wp_enqueue_style() { return wpti_test_call( __FUNCTION__, func_get_args() ); }
 function wp_localize_script() { return wpti_test_call( __FUNCTION__, func_get_args() ); }
