@@ -46,6 +46,22 @@ final class PluginTest extends TestCase {
 		$this->assertSame( 'wpDashiconPickerL10n', $GLOBALS['wpti_test']['calls']['wp_localize_script'][0][1] );
 	}
 
+	public function test_picker_assets_keep_the_input_and_its_toggler_in_sync(): void {
+		$picker  = file_get_contents( dirname( __DIR__ ) . '/assets/js/wp-dashicon-picker.js' );
+		$catalog = file_get_contents( dirname( __DIR__ ) . '/assets/js/dashicons-picker.js' );
+		$styles  = file_get_contents( dirname( __DIR__ ) . '/assets/css/wp-dashicon-picker.css' );
+
+		$this->assertIsString( $picker );
+		$this->assertIsString( $catalog );
+		$this->assertIsString( $styles );
+		$this->assertStringContainsString( 'self._setTogglerIcon( self.initialValue );', $picker );
+		$this->assertStringContainsString( 'self._setTogglerIcon( val );', $picker );
+		$this->assertStringContainsString( "self.element.val( '' ).change();", $picker );
+		$this->assertStringContainsString( "button.val( 'dashicons-' + title ).trigger( 'change' );", $catalog );
+		$this->assertStringContainsString( '.wp-dashicon-result:not([class*="dashicons-"]):before', $styles );
+		$this->assertStringNotContainsString( "content: '\\f099';", $styles );
+	}
+
 	public function test_register_meta_preserves_icon_callbacks(): void {
 		$icons = $this->icons();
 		$icons->register_meta();

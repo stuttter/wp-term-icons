@@ -6,6 +6,7 @@
 - Declare compatibility with WordPress 7.1.
 - Add automated regression tests and contributor tooling.
 - Correct the term-icon translation domain.
+- Keep the picker input and displayed icon synchronized when selecting or clearing an icon.
 
 ## 2.0.0
 
