@@ -22,6 +22,7 @@ defined( 'ABSPATH' ) || exit;
  * Include the required files & dependencies
  *
  * @since 0.1.0
+ * @return void
  */
 function _wp_term_icons() {
 
@@ -38,6 +39,7 @@ add_action( 'plugins_loaded', '_wp_term_icons' );
  * Initialize the main class
  *
  * @since 0.2.0
+ * @return void
  */
 function _wp_term_icons_init() {
 

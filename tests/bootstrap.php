@@ -26,6 +26,15 @@ function plugin_dir_url() { return 'https://example.test/wp-content/plugins/wp-t
 function plugin_basename() { return 'wp-term-icons/wp-term-icons.php'; }
 function esc_html__( $text ) { return $text; }
 function esc_attr( $value ) { return htmlspecialchars( (string) $value, ENT_QUOTES, 'UTF-8' ); }
+/**
+ * Escape test metadata as HTML text.
+ *
+ * @param mixed $value Metadata value.
+ * @return string
+ */
+function esc_html( $value ) {
+	return htmlspecialchars( (string) $value, ENT_QUOTES, 'UTF-8' );
+}
 function wp_kses_post( $value ) {
 	wpti_test_call( __FUNCTION__, func_get_args() );
 	return $value;
