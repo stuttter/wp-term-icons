@@ -25,7 +25,7 @@ final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 	public $version = '2.0.0';
 
 	/**
-	 * @var string Database version
+	 * @var int Database version
 	 */
 	public $db_version = 201905300001;
 
@@ -38,6 +38,7 @@ final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 	 * Hook into queries, admin screens, and more!
 	 *
 	 * @since 0.1.0
+	 * @param string $file Plugin file.
 	 */
 	public function __construct( $file = '' ) {
 
@@ -56,16 +57,17 @@ final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 	 * Enqueue quick-edit JS
 	 *
 	 * @since 0.1.0
+	 * @return void
 	 */
 	public function enqueue_scripts() {
 
 		// Enqueue the icons picker
 		wp_enqueue_script( 'wp-dashicon-picker', $this->url . 'assets/js/wp-dashicon-picker.js',   array( 'jquery-touch-punch' ), $this->db_version, true  );
-		wp_enqueue_style( 'wp-dashicon-picker',  $this->url . 'assets/css/wp-dashicon-picker.css', array( 'dashicons'          ), $this->db_version, false );
+		wp_enqueue_style( 'wp-dashicon-picker',  $this->url . 'assets/css/wp-dashicon-picker.css', array( 'dashicons'          ), $this->db_version, 'all' );
 
 		// Enqueue the icons picker
 		wp_enqueue_script( 'dashicons-picker', $this->url . 'assets/js/dashicons-picker.js',   array( 'wp-dashicon-picker' ), $this->db_version, true  );
-		wp_enqueue_style( 'dashicons-picker',  $this->url . 'assets/css/dashicons-picker.css', array( 'wp-dashicon-picker' ), $this->db_version, false );
+		wp_enqueue_style( 'dashicons-picker',  $this->url . 'assets/css/dashicons-picker.css', array( 'wp-dashicon-picker' ), $this->db_version, 'all' );
 
 		// Enqueue fancy icons; includes quick-edit
 		wp_enqueue_script( 'term-icons', $this->url . 'assets/js/term-icons.js', array( 'dashicons-picker' ), $this->db_version, true );
@@ -82,6 +84,7 @@ final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 	 * Add help tabs for `color` column
 	 *
 	 * @since 0.1.2
+	 * @return void
 	 */
 	public function help_tabs() {
 		get_current_screen()->add_help_tab(array(
@@ -97,6 +100,7 @@ final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 	 * @since 0.1.2
 	 *
 	 * @param string $meta
+	 * @return string
 	 */
 	protected function format_output( $meta = '' ) {
 		return '<i data-icon="' . esc_attr( $meta ) . '" class="term-icon dashicons ' . esc_attr( $meta ) . '"></i>';
@@ -108,7 +112,8 @@ final class WP_Term_Icons extends JJJ\WP\Term\Meta\UI {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param  $term
+	 * @param WP_Term|string $term Term or empty value.
+	 * @return void
 	 */
 	protected function form_field( $term = '' ) {
 

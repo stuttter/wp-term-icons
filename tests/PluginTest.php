@@ -43,7 +43,21 @@ final class PluginTest extends TestCase {
 		$this->assertSame( array( 'wp-dashicon-picker' ), $GLOBALS['wpti_test']['calls']['wp_enqueue_script'][1][2] );
 		$this->assertSame( 'term-icons', $GLOBALS['wpti_test']['calls']['wp_enqueue_script'][2][0] );
 		$this->assertSame( array( 'dashicons-picker' ), $GLOBALS['wpti_test']['calls']['wp_enqueue_script'][2][2] );
+		$this->assertSame( 'all', $GLOBALS['wpti_test']['calls']['wp_enqueue_style'][0][4] );
+		$this->assertSame( 'all', $GLOBALS['wpti_test']['calls']['wp_enqueue_style'][1][4] );
 		$this->assertSame( 'wpDashiconPickerL10n', $GLOBALS['wpti_test']['calls']['wp_localize_script'][0][1] );
+	}
+
+	/** Confirm the base UI escapes metadata when no custom formatter is supplied. */
+	public function test_base_ui_formatting_fallback_escapes_metadata(): void {
+		$ui = new JJJ\WP\Term\Meta\UI();
+
+		$method = new ReflectionMethod( $ui, 'format_output' );
+		if ( PHP_VERSION_ID < 80100 ) {
+			$method->setAccessible( true );
+		}
+
+		$this->assertSame( '&lt;script&gt;', $method->invoke( $ui, '<script>' ) );
 	}
 
 	public function test_picker_assets_keep_the_input_and_its_toggler_in_sync(): void {
