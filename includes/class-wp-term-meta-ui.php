@@ -30,7 +30,7 @@ class UI {
 	protected $version = '0.0.0';
 
 	/**
-	 * @var string Database version
+	 * @var int Database version
 	 */
 	protected $db_version = 201905301644;
 
@@ -50,7 +50,7 @@ class UI {
 	protected $no_value = '&#8212;';
 
 	/**
-	 * @var array Array of labels
+	 * @var array<string, string> Array of labels
 	 */
 	protected $labels = array(
 		'singular'   => '',
@@ -79,7 +79,7 @@ class UI {
 	public $basename = '';
 
 	/**
-	 * @var array Which taxonomies are being targeted?
+	 * @var array<string> Which taxonomies are being targeted?
 	 */
 	public $taxonomies = array();
 
@@ -102,6 +102,7 @@ class UI {
 	 * Hook into queries, admin screens, and more!
 	 *
 	 * @since 2.0.0
+	 * @param string $file Plugin file.
 	 */
 	public function __construct( $file = '' ) {
 
@@ -119,6 +120,7 @@ class UI {
 	 * Initialize on `init` action so taxonomies are registered
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function initialize() {
 
@@ -144,6 +146,7 @@ class UI {
 	 * Add the hooks, on the `init` action
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function add_hooks() {
 
@@ -186,6 +189,7 @@ class UI {
 	 * Register term meta, key, and callbacks
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function register_meta() {
 		register_meta( 'term', $this->meta_key, array(
@@ -216,7 +220,7 @@ class UI {
 	 * @param  int     $post_id
 	 * @param  int     $user_id
 	 * @param  string  $cap
-	 * @param  array   $caps
+	 * @param  array<int, string> $caps
 	 *
 	 * @return boolean
 	 */
@@ -234,6 +238,7 @@ class UI {
 	 * Administration area hooks
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function admin_init() {
 
@@ -245,6 +250,7 @@ class UI {
 	 * Administration area hooks
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function edit_tags() {
 
@@ -265,8 +271,9 @@ class UI {
 	 * @since 2.0.0
 	 *
 	 * @param  string  $orderby
-	 * @param  array   $query_vars
-	 * @param  array   $taxonomies
+	 * @param  array<string, mixed> $query_vars
+	 * @param  array<int, string>    $taxonomies
+	 * @return string
 	 */
 	public function get_terms_orderby( $orderby = '', $query_vars = array(), $taxonomies = array() ) {
 
@@ -288,9 +295,10 @@ class UI {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  array  $clauses
-	 * @param  array  $taxonomies
-	 * @param  array  $args
+	 * @param  array<string, string> $clauses
+	 * @param  array<int, string>    $taxonomies
+	 * @param  array<string, mixed> $args
+	 * @return array<string, string>
 	 */
 	public function terms_clauses( $clauses = array(), $taxonomies = array(), $args = array() ) {
 		global $wpdb;
@@ -349,6 +357,7 @@ class UI {
 	 * Enqueue quick-edit JS
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function enqueue_scripts() { }
 
@@ -356,6 +365,7 @@ class UI {
 	 * Add help tabs for this metadata
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function help_tabs() { }
 
@@ -363,6 +373,7 @@ class UI {
 	 * Add help tabs for this metadata
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function admin_head() { }
 
@@ -370,6 +381,7 @@ class UI {
 	 * Quick edit ajax updating
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function ajax_update() {}
 
@@ -378,8 +390,8 @@ class UI {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $args
-	 * @return array
+	 * @param array<string, mixed> $args
+	 * @return array<int|string, string>
 	 */
 	private function get_taxonomies( $args = array() ) {
 
@@ -409,9 +421,9 @@ class UI {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $columns
+	 * @param array<string, string> $columns
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public function add_column_header( $columns = array() ) {
 		$columns[ $this->meta_key ] = $this->labels['singular'];
@@ -449,14 +461,26 @@ class UI {
 		return wp_kses_post( $retval );
 	}
 
+		/**
+		 * Format a metadata value for the list-table column.
+		 *
+		 * Subclasses may override this for richer markup.
+		 *
+		 * @param mixed $meta Metadata value.
+		 * @return string
+		 */
+		protected function format_output( $meta = '' ) {
+			return esc_html( (string) $meta );
+		}
+
 	/**
 	 * Allow sorting by this `meta_key`
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $columns
+	 * @param array<string, string> $columns
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public function sortable_columns( $columns = array() ) {
 		$columns[ $this->meta_key ] = $this->meta_key;
@@ -471,6 +495,7 @@ class UI {
 	 * @param  int     $term_id
 	 * @param  int     $tt_id
 	 * @param  string  $taxonomy
+	 * @return void
 	 */
 	public function save_meta( $term_id = 0, $tt_id = 0, $taxonomy = '' ) {
 
@@ -499,6 +524,7 @@ class UI {
 	 * @param  string  $taxonomy
 	 * @param  string  $meta
 	 * @param  bool    $clean_cache
+	 * @return void
 	 */
 	public function set_meta( $term_id = 0, $taxonomy = '', $meta = '', $clean_cache = false ) {
 
@@ -523,6 +549,7 @@ class UI {
 	 * @since 2.0.0
 	 *
 	 * @param int $term_id
+	 * @return mixed
 	 */
 	public function get_meta( $term_id = 0 ) {
 		return get_term_meta( $term_id, $this->meta_key, true );
@@ -534,6 +561,7 @@ class UI {
 	 * Output the form field for this metadata when adding a new term
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	public function add_form_field() {
 		?>
@@ -563,7 +591,8 @@ class UI {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param object $term
+	 * @param \WP_Term|false $term
+	 * @return void
 	 */
 	public function edit_form_field( $term = false ) {
 		?>
@@ -596,7 +625,10 @@ class UI {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  $term
+	 * @param string $column_name Column name.
+	 * @param string $screen Screen name.
+	 * @param string $name Taxonomy name.
+	 * @return false|void
 	 */
 	public function quick_edit_meta( $column_name = '', $screen = '', $name = '' ) {
 
@@ -626,7 +658,8 @@ class UI {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  $term
+	 * @param \WP_Term|false|string $term Term or empty value.
+	 * @return void
 	 */
 	protected function form_field( $term = '' ) {
 
@@ -645,7 +678,7 @@ class UI {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param  $term
+	 * @return void
 	 */
 	protected function quick_edit_form_field() {
 		?>
@@ -663,6 +696,7 @@ class UI {
 	 * Runs on `init`
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	protected function maybe_upgrade_database() {
 
@@ -671,7 +705,7 @@ class UI {
 
 		// Needs
 		if ( $db_version < $this->db_version ) {
-			$this->upgrade_database( $db_version );
+			$this->upgrade_database();
 		}
 	}
 
@@ -679,6 +713,7 @@ class UI {
 	 * Upgrade the database as needed, based on version comparisons
 	 *
 	 * @since 2.0.0
+	 * @return void
 	 */
 	private function upgrade_database() {
 		update_option( $this->db_version_key, $this->db_version );
@@ -691,7 +726,8 @@ class UI {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param array $taxonomies
+	 * @param array<string>|string $taxonomies
+	 * @return bool
 	 */
 	private function is_taxonomy( $taxonomies = array() ) {
 
