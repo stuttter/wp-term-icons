@@ -1,6 +1,6 @@
 === WP Term Icons ===
 Contributors:      johnjamesjacoby, stuttter
-Tags:              taxonomy, term, meta, metadata, icon, icons
+Tags:              taxonomy, term, meta, metadata, icon
 Requires PHP:      7.4
 Requires at least: 6.4
 Tested up to:      7.1
